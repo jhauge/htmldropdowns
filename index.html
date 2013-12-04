@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="da-DK">
     <head>
         <title>HtmlDropdown</title>
@@ -9,8 +9,10 @@
         <div id="container">
             <div id="dropdowns">
                 <div class="dropdown">
-                    <input type="text" data-bind="htmlDropdown: areaDropdown" />
-
+                    <div data-bind="htmlDropdown: purposeDropdown"></div>
+                </div>
+                <div class="dropdown">
+                    <input type="text" data-bind="htmlDropdown: areaDropdown"></input>
                 </div>
             </div>
             <div id="content">

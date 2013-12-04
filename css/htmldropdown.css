@@ -7,3 +7,14 @@ html,body {
     margin: 0 auto;
     width: 960px;
 }
+
+div.dropdown {
+    float: left;
+    width: 250px;
+}
+
+div.dropdown ul {
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 3px 0;
+}
