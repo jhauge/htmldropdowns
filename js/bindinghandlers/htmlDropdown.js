@@ -7,27 +7,30 @@ define(['knockout', 'jquery'], function(ko, $) {
             var value = valueAccessor(),
                 $element = $(element);
 
-            // Add attribute placeholder to element
-            if (/input/gi.test(element.tagName)) {
-                ko.applyBindingsToNode(element, { attr: { placeholder: value.placeHolder } });
-            }
-            if (/div|p|span|/gi.test(element.tagName)) {
-                ko.applyBindingsToNode(element, { html: value.placeHolder });
-            }
+            $element.addClass('dropdown');
 
-            // handle click
-            ko.applyBindingsToNode(element, {
-                click: function () {
-                    $(element).parent().toggleClass('isOpen');
-                }
-            });
+            // Add css isOpen binding to container
+            ko.applyBindingsToNode(element, { css: { isOpen: value.isOpen } });
+
+            // Add input div
+            var $input = $('<input type="text" />');
+            var input = $input.get(0);
+            ko.applyBindingsToNode(input, { attr: { placeholder: value.placeHolder } });
+            ko.applyBindingsToNode(input, { value: value.selectedItem });
+            ko.applyBindingsToNode(input, { click: function() { value.isOpen(!value.isOpen()) } });
+            $element.append($input);
 
             // Add ul element with list of items after element
-            var list = $('<ul></ul>');
+            var $list = $('<ul></ul>');
             ko.utils.arrayForEach(value.dataList, function (listItem) {
-                list.append('<li>' + listItem.text + '</li>')
+                li = $('<li>' + listItem.text + '</li>');
+                li.on('click', function() {
+                    value.isOpen(false);
+                    value.selectedItem(listItem.text);
+                });
+                $list.append(li);
             });
-            $element.parent().append(list);
+            $element.append($list);
         },
         update: function () { }
     };

@@ -1,6 +1,6 @@
 ﻿/* global define */
 
-define(['knockout'], function() {
+define(['knockout'], function(ko) {
     'use strict';
 
     // vars
@@ -15,7 +15,9 @@ define(['knockout'], function() {
             { value: 'eue', text: 'Extended Europe' },
             { value: 'smw', text: 'World excl. USA' },
             { value: 'wor', text: 'Whole world' }
-        ]
+        ],
+        selectedItem: ko.observable(''),
+        isOpen: ko.observable(false)
     };
 
     purposeDropdown = {
@@ -24,7 +26,9 @@ define(['knockout'], function() {
             { value: 'vac', text: 'Ferie' },
             { value: 'wor', text: 'Arbejde/udstationering' },
             { value: 'aup', text: 'Au Pair ophold' }
-        ]
+        ],
+        selectedItem: ko.observable(''),
+        isOpen: ko.observable(false)
     };
 
     // return
