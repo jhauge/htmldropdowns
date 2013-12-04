@@ -18,19 +18,22 @@ define(['knockout', 'jquery'], function(ko, $) {
             var $input = $('<input type="text" />');
             var input = $input.get(0);
             ko.applyBindingsToNode(input, { attr: { placeholder: value.placeHolder } });
-            ko.applyBindingsToNode(input, { value: value.selectedItem });
-            ko.applyBindingsToNode(input, { click: function() { value.isOpen(!value.isOpen()) } });
+            ko.applyBindingsToNode(input, { value: value.selectedItem().text });
+            ko.applyBindingsToNode(input, { click: function() { value.isOpen(!value.isOpen()); } });
+            ko.applyBindingsToNode(input, { event: { keyup: function() { console.log(value); } } })
             $element.append($input);
 
             // Add ul element with list of items after element
             var $list = $('<ul></ul>');
             ko.utils.arrayForEach(value.dataList, function (listItem) {
-                li = $('<li>' + listItem.text + '</li>');
-                li.on('click', function() {
+                $li = $('<li>' + listItem.text + '</li>');
+                var li = $li.get(0);
+                ko.applyBindingsToNode(li, { css: { active: value.selectedItem().value === listItem.value } });
+                ko.applyBindingsToNode(li, { click: function() {
+                    value.selectedItem(listItem);
                     value.isOpen(false);
-                    value.selectedItem(listItem.text);
-                });
-                $list.append(li);
+                }});
+                $list.append($li);
             });
             $element.append($list);
         },
