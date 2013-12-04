@@ -1,4 +1,5 @@
 html,body {
+    font-family: Calibri;
     margin: 0;
     padding: 0;
 }
@@ -9,17 +10,38 @@ html,body {
 }
 
 div.dropdown {
+    cursor: pointer;
     float: left;
-    width: 250px;
+    width: 300px;
+}
+
+div.dropdown input {
+    cursor: pointer;
+    border: solid 1px #999;
+    line-height: 20px;
+    padding: 4px;
+    width: 100%;
 }
 
 div.dropdown ul {
+    border: solid 1px #999;
     display: none;
     list-style-type: none;
-    margin: 5px 0;
-    padding: 3px 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 div.dropdown.isOpen ul {
     display: block;
+}
+
+div.dropdown li {
+    margin: 0 4px;
+    padding: 4px 2px;
+}
+
+div.dropdown li:hover {
+    background-color: #000;
+    color: #fff;
 }

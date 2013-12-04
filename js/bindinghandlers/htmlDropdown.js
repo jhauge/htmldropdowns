@@ -2,6 +2,7 @@
 /* global define */
 
 define(['knockout', 'jquery'], function(ko, $) {
+
     ko.bindingHandlers.htmlDropdown = {
         init: function (element, valueAccessor) {
             var value = valueAccessor(),
@@ -11,6 +12,7 @@ define(['knockout', 'jquery'], function(ko, $) {
 
             // Add css isOpen binding to container
             ko.applyBindingsToNode(element, { css: { isOpen: value.isOpen } });
+            ko.applyBindingsToNode(element, { event: { mouseleave: function() { value.isOpen(false); } } })
 
             // Add input div
             var $input = $('<input type="text" />');
