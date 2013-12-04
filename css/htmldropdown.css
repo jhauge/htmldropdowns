@@ -14,7 +14,12 @@ div.dropdown {
 }
 
 div.dropdown ul {
+    display: none;
     list-style-type: none;
     margin: 5px 0;
     padding: 3px 0;
+}
+
+div.dropdown.isOpen ul {
+    display: block;
 }

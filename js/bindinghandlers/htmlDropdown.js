@@ -4,8 +4,9 @@
 define(['knockout', 'jquery'], function(ko, $) {
     ko.bindingHandlers.htmlDropdown = {
         init: function (element, valueAccessor) {
-            var value = valueAccessor();
-            console.log(element.tagName.toLowerCase());
+            var value = valueAccessor(),
+                $element = $(element);
+
             // Add attribute placeholder to element
             if (/input/gi.test(element.tagName)) {
                 ko.applyBindingsToNode(element, { attr: { placeholder: value.placeHolder } });
@@ -14,12 +15,19 @@ define(['knockout', 'jquery'], function(ko, $) {
                 ko.applyBindingsToNode(element, { html: value.placeHolder });
             }
 
+            // handle click
+            ko.applyBindingsToNode(element, {
+                click: function () {
+                    $(element).parent().toggleClass('isOpen');
+                }
+            });
+
             // Add ul element with list of items after element
             var list = $('<ul></ul>');
             ko.utils.arrayForEach(value.dataList, function (listItem) {
                 list.append('<li>' + listItem.text + '</li>')
             });
-            $(element).parent().append(list);
+            $element.parent().append(list);
         },
         update: function () { }
     };
