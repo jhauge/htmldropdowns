@@ -18,7 +18,7 @@ define(['knockout', 'jquery'], function(ko, $) {
             var $input = $('<input type="text" />');
             var input = $input.get(0);
             ko.applyBindingsToNode(input, { attr: { placeholder: value.placeHolder } });
-            ko.applyBindingsToNode(input, { value: value.getSelectedText() });
+            ko.applyBindingsToNode(input, { value: value.selectedItemText });
             ko.applyBindingsToNode(input, { click: function() { value.isOpen(!value.isOpen()); } });
             ko.applyBindingsToNode(input, { event: { keyup: function () { console.log(value); } } });
             $element.append($input);
@@ -28,11 +28,11 @@ define(['knockout', 'jquery'], function(ko, $) {
             ko.utils.arrayForEach(value.dataList, function (listItem) {
                 var $li = $('<li>' + listItem.text + '</li>');
                 var li = $li.get(0);
-                ko.applyBindingsToNode(li, { css: { active: value.selectedItem().value === listItem.value } });
+                ko.applyBindingsToNode(li, { css: { active: value.selectedItemValue() === listItem.value } });
                 ko.applyBindingsToNode(li, { click: function() {
-                    value.selectedItem(listItem);
+                    value.select(listItem);
                     value.isOpen(false);
-                    console.log(value.selectedItem().text);
+                    console.log(value.getSelectedValue());
                 }});
                 $list.append($li);
             });
