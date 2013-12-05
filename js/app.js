@@ -6,9 +6,7 @@ require.config({
         jquery: '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min',
         knockout: 'plugins/knockout-3.0.0'
     },
-    shim: {
-        
-    }
+    urlArgs: 'v=1'
 });
 
 require([
