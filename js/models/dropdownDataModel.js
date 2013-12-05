@@ -15,7 +15,6 @@ define(['knockout'], function (ko) {
         this.selectedItemValue(item.value);
     };
 
-
     // return 
     return DropdownDataModel;
 });

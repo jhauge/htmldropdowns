@@ -32,7 +32,6 @@ define(['knockout', 'jquery'], function(ko, $) {
                 ko.applyBindingsToNode(li, { click: function() {
                     value.select(listItem);
                     value.isOpen(false);
-                    console.log(value.getSelectedValue());
                 }});
                 $list.append($li);
             });

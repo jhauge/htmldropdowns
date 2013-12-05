@@ -1,6 +1,6 @@
 ﻿/* global define */
 
-define(['knockout', 'models/dropdownDataModel'], function(ko, DropdownDataModel) {
+define(['knockout', 'models/dropdownDataModel'], function (ko, DropdownDataModel) {
     'use strict';
 
     // vars
@@ -8,17 +8,15 @@ define(['knockout', 'models/dropdownDataModel'], function(ko, DropdownDataModel)
         purposeDropdown;
 
     // setup
-    areaDropdown = {
+    areaDropdown = new DropdownDataModel({
         placeHolder: 'Hvor skal du hen?',
         dataList: [
             { value: 'eur', text: 'Europe' },
             { value: 'eue', text: 'Extended Europe' },
             { value: 'smw', text: 'World excl. USA' },
             { value: 'wor', text: 'Whole world' }
-        ],
-        selectedItem: ko.observable(''),
-        isOpen: ko.observable(false)
-    };
+        ]
+    });
 
     purposeDropdown = new DropdownDataModel({
         placeHolder: 'Hvad er formålet med rejsen',
